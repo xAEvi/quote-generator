@@ -1,4 +1,4 @@
-Pending:
+# Pending:
 
 - Use an API to get quotes
 - Animate state changes with smooth effects
