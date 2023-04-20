@@ -1,3 +1,11 @@
+# Pending:
+
+- Use an API to get quotes
+- Animate state changes with smooth effects
+- Change those colors, they are too bright 
+
+# Requirements
+
 Build a Random Quote Machine
 Objective: Build an app that is functionally similar to this: https://random-quote-machine.freecodecamp.rocks/.
 
@@ -32,3 +40,5 @@ You can build your project by using this CodePen template and clicking Save to c
 Once you're done, submit the URL to your working project with all its tests passing.
 
 Note: Twitter does not allow links to be loaded in an iframe. Try using the target="_blank" or target="_top" attribute on the #tweet-quote element if your tweet won't load. target="_top" will replace the current tab so make sure your work is saved.
+
+[Link](https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-random-quote-machine)
