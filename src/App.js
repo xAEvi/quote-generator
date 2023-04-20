@@ -1,13 +1,17 @@
 import './App.css';
 import Quote from "./components/Quote";
-import quotes from "./data/quotes";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
 
-  const newRandomNumber = () => {
-    return Math.floor(Math.random() * quotes.length);
-  }
+  const fetchQuote = () => {
+    fetch('https://api.quotable.io/random')
+      .then(response => response.json())
+      .then(data => {
+        setQuote(data);
+        setTweet(generateTweetQuote(data));
+      });
+  };
 
   const getRandomPastelColor = () => {
     const hue = Math.floor(Math.random() * 360);
@@ -15,45 +19,32 @@ function App() {
     return pastel;
   }
 
-  const generateNewQuote = () => {
-    const quote = quotes[randomNumber];
-    return quote["quote"];
+  const generateTweetQuote = (data) => {
+    return 'https://twitter.com/intent/tweet?text=' + encodeURIComponent('"' + data.content + '" ' + data.author);
   }
 
-  const generateNewAuthor = () => {
-    const author = quotes[randomNumber];
-    return author["author"];
-  }
-
-  const generateTweetQuote = () => {
-    return 'https://twitter.com/intent/tweet?hashtags=programming&text=' + encodeURIComponent('"' + quote + '" ' + author);
-  }
-
-  const [randomNumber, setRandomNumber] = useState(newRandomNumber());
+  const [quote, setQuote] = useState('');
   const [color, setColor] = useState(getRandomPastelColor());
-  const [quote, setQuote] = useState(generateNewQuote());
-  const [author, setAuthor] = useState(generateNewAuthor());
-  const [tweet, setTweet] = useState(generateTweetQuote());
+  const [tweet, setTweet] = useState('');
+
+  useEffect(() => {
+    fetchQuote();
+  }, []);
 
   const newQuote = () => {
-    setRandomNumber(newRandomNumber);
-    setAuthor(generateNewAuthor());
+    fetchQuote();
     setColor(getRandomPastelColor());
-    setQuote(generateNewQuote());
-    setTweet(generateTweetQuote());
   }
 
   return (
     <div 
-
       style={{
         backgroundColor: color,
-        transition: "transform 1s ease-in-out"
       }}
       className="App">
       <Quote 
-        quote={quote}
-        author={author}
+        quote={quote.content}
+        author={quote.author}
         color={color}
         generateNewQuote={newQuote}
         tweet={tweet}
