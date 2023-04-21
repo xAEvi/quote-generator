@@ -1,9 +1,3 @@
-# Pending:
-
-- Use an API to get quotes
-- Animate state changes with smooth effects
-- Change those colors, they are too bright 
-
 # Requirements
 
 Build a Random Quote Machine

@@ -20,30 +20,39 @@ function App() {
     return randomColor
   }
 
+  const [quote, setQuote] = useState('');
+  const [color, setColor] = useState(getRandomColor());
+  const [tweet, setTweet] = useState('');
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    fetchQuote();
+    setActive(true);
+  }, []);
+
   const generateTweetQuote = (data) => {
     return 'https://twitter.com/intent/tweet?text=' + encodeURIComponent('"' + data.content + '" ' + data.author);
   }
 
-  const [quote, setQuote] = useState('');
-  const [color, setColor] = useState(getRandomColor());
-  const [tweet, setTweet] = useState('');
-
-  useEffect(() => {
-    fetchQuote();
-  }, []);
-
   const newQuote = () => {
-    fetchQuote();
+    setActive(false);
     setColor(getRandomColor());
+    
+    setTimeout(() => {
+      fetchQuote();
+      setActive(true);
+    }, 1500);
   }
 
   return (
     <div 
       style={{
         backgroundColor: color,
+        transition: "background-color 1.5s ease-in-out"
       }}
       className="App">
       <Quote 
+        active={active}
         quote={quote.content}
         author={quote.author}
         color={color}
