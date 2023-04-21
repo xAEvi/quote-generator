@@ -1,6 +1,7 @@
 import './App.css';
 import Quote from "./components/Quote";
 import { useState, useEffect } from 'react';
+import colors from "./colors";
 
 function App() {
 
@@ -13,10 +14,10 @@ function App() {
       });
   };
 
-  const getRandomPastelColor = () => {
-    const hue = Math.floor(Math.random() * 360);
-    const pastel = 'hsl(' + hue + ', 100%, 85%';
-    return pastel;
+  const getRandomColor = () => {
+    const randomIndex = Math.floor(Math.random() * colors.length)
+    const randomColor = colors[randomIndex];
+    return randomColor
   }
 
   const generateTweetQuote = (data) => {
@@ -24,7 +25,7 @@ function App() {
   }
 
   const [quote, setQuote] = useState('');
-  const [color, setColor] = useState(getRandomPastelColor());
+  const [color, setColor] = useState(getRandomColor());
   const [tweet, setTweet] = useState('');
 
   useEffect(() => {
@@ -33,7 +34,7 @@ function App() {
 
   const newQuote = () => {
     fetchQuote();
-    setColor(getRandomPastelColor());
+    setColor(getRandomColor());
   }
 
   return (
