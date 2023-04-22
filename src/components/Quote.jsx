@@ -6,7 +6,7 @@ const Quote = props => {
 
   return (
     <div id='quote-box'>
-      <div className={`${props.active ? 'fade-in active' : 'fade-in'}`}>
+      <div id='texts' className={`${props.active ? 'fade-in active' : 'fade-in'}`}>
         <div id='text-box'>
           <q 
             style={{

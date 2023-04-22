@@ -12,22 +12,30 @@
     font-size: 30px;
 }
 
+#texts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 #text-box{
-    width: 90%;
+    width: 95%;
     height: 40%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin-bottom: 40px;
+    text-align: justify;
 }
 
 #buttons-box{
-    width: 90%;
+    width: 95%;
     height: 20%;
 }
 
 #author-box{
-    width: 90%;
+    width: 95%;
     display: flex;
     justify-content: right;
     margin-bottom: 20px;
